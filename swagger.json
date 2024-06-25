@@ -48,16 +48,16 @@
               "title": {
                 "type": "string"
               },
-            "price": {
+             "price": {
                 "type": "number"
               },
-            "description": {
+             "description": {
                 "type": "string"
               },
-            "category": {
+              "category": {
                 "type": "string"
               },
-            "image": {
+             "image": {
                 "type": "string"
               }
             }
@@ -85,16 +85,16 @@
               "title": {
                 "type": "string"
               },
-            "price": {
+              "price": {
                 "type": "number"
               },
-            "description": {
+              "description": {
                 "type": "string"
               },
-            "category": {
+              "category": {
                 "type": "string"
               },
-            "image": {
+              "image": {
                 "type": "string"
               }
             }
@@ -127,6 +127,242 @@
           }
         }
       }
+    },
+ 
+  
+  "/user": {
+    "get": {
+      "tags": ["User"],
+      "summary": "",
+      "responses": {
+        "200": {
+          "description": "This service allows you to get users list."
+        }
+      }
+    }
+  },
+  "/user/create": {
+    "post": {
+      "tags": ["User"],
+      "summary": "",
+      "consumes": ["application/json"],
+      "parameters": [{
+        "in": "body",
+        "name": "user",
+        "description": "Create a new user",
+        "schema": {
+          "type": "object",
+          "required": ["firstName", "lastName", "username", "phone", "email"],
+          "properties": {
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          }
+        }
+    }],
+      "responses": {
+        "200": {
+          "description": "This service allows you to create a new user."
+        }
+      }
+    }
+  },
+  "/user/{id}": {
+    "put": {
+      "tags": ["User"],
+      "summary": "",
+      "consumes": ["application/json"],
+      "parameters": [{
+        "in": "body",
+        "name": "user",
+        "description": "update a user by id.",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          }
+        }
+    },
+    {
+      "name": "id",
+      "in": "path",
+      "description": "update users by id"
+    }],
+      "responses": {
+        "200": {
+          "description": "This service allows you to update a user."
+        }
+      }
+    },
+    "delete": {
+      "tags": ["User"],
+      "summary": "",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "delete users by id"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "This service allows you to delete a user."
+        }
+      }
+    }
+  },
+
+  "/cart/create/{user_id}": {
+    "post": {
+      "tags": ["Cart"],
+      "summary": "",
+      "parameters": [
+        {
+          "name": "user_id",
+          "in": "path",
+          "description": "create cart for user id"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "This service allows you to create a new cart."
+        }
+      }
+    }
+  },
+  "/cart": {
+    "get": {
+      "tags": ["Cart"],
+      "summary": "",
+      "responses": {
+        "200": {
+          "description": "This service allows you to get cart list."
+        }
+      }
+    }
+  },
+  "/cart/{id}": {
+    
+    "delete": {
+      "tags": ["Cart"],
+      "summary": "",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "delete cart by id"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "This service allows you to delete a cart."
+        }
+      }
+    }
+  },
+
+  "/cartitem/create/{CartID}/{ProductID}": {
+    "post": {
+      "tags": ["Cart Item"],
+      "summary": "",
+      "parameters": [
+        {
+          "name": "CartID",
+          "in": "path",
+          "description": "Items added in the cart id"
+        },
+        {
+          "name": "ProductID",
+          "in": "path",
+          "description": "product id added in the cart"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "This service allows you to add a product in mulitple carts."
+        }
+      }
+    }
+  },
+  "/cartitem": {
+    "get": {
+      "tags": ["Cart Item"],
+      "summary": "",
+      "responses": {
+        "200": {
+          "description": "This service allows you to get cart item list."
+        }
+      }
+    }
+  },
+  "/cartitem/{CartID}": {
+    "get": {
+      "tags": ["Cart Item"],
+      "summary": "",
+      "parameters": [
+        {
+          "name": "CartID",
+          "in": "path",
+          "description": "get products added in the cart"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "This service allows you to get products in the cart."
+        }
+      }
+    }
+  },
+  "/cartitem/delete/{CartID}/{ProductID}": {
+    
+    "delete": {
+      "tags": ["Cart Item"],
+      "summary": "",
+      "parameters": [
+        {
+          "name": "CartID",
+          "in": "path",
+          "description": "delete items added in the cart id"
+        },
+        {
+          "name": "ProductID",
+          "in": "path",
+          "description": "delete product id added in the cart"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "This service allows you to delete a cart item."
+        }
+      }
     }
   }
 }
+}
+

@@ -17,6 +17,7 @@ app.use(express.json())
 app.use('/product', routes.productRoutes)
 app.use('/user', routes.userRoutes)
 app.use('/cart', routes.cartRoutes)
+app.use('/cartitem', routes.cartItemRoutes)
 
 
 const PORT = process.env.PORT || 8091
