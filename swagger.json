@@ -1,0 +1,132 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Mini-Project3",
+    "description": "My Mini Project3 Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8091",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "FakeStore",
+      "description": "API for fake store in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/product": {
+      "get": {
+        "tags": ["Product"],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "This service allows you to get all product list."
+          }
+        }
+      }
+    },
+    "/product/create": {
+      "post": {
+        "tags": ["Product"],
+        "summary": "",
+        "consumes": ["application/json"],
+        "parameters": [{
+          "in": "body",
+          "name": "product",
+          "description": "New product to create.",
+          "schema": {
+            "type": "object",
+            "required": ["title", "price", "description", "category", "image"],
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+            "price": {
+                "type": "number"
+              },
+            "description": {
+                "type": "string"
+              },
+            "category": {
+                "type": "string"
+              },
+            "image": {
+                "type": "string"
+              }
+            }
+          }
+      }],
+        "responses": {
+          "200": {
+            "description": "This service allows you to create a new product."
+          }
+        }
+      }
+    },
+    "/product/{id}": {
+      "put": {
+        "tags": ["Product"],
+        "summary": "",
+        "consumes": ["application/json"],
+        "parameters": [{
+          "in": "body",
+          "name": "product",
+          "description": "update a product by id.",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+            "price": {
+                "type": "number"
+              },
+            "description": {
+                "type": "string"
+              },
+            "category": {
+                "type": "string"
+              },
+            "image": {
+                "type": "string"
+              }
+            }
+          }
+      },
+      {
+        "name": "id",
+        "in": "path",
+        "description": "update products by id"
+      }],
+        "responses": {
+          "200": {
+            "description": "This service allows you to update a product."
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Product"],
+        "summary": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "delete products by id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This service allows you to delete a product."
+          }
+        }
+      }
+    }
+  }
+}
